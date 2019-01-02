@@ -2326,7 +2326,8 @@ class DOMQuery implements \QueryPath\Query, \IteratorAggregate, \Countable {
       return $this->document->saveHTML();
     }
     // saveHTML cannot take a node and serialize it.
-    return $this->document->saveXML($first);
+    $libXmlOptions = isset($this->options['no_empty_tag']) && $this->options['no_empty_tag'] ? LIBXML_NOEMPTYTAG : null;
+    return $this->document->saveXML($first, $libXmlOptions);
   }
 
   /**
